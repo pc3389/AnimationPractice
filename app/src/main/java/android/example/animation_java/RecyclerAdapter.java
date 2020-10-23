@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.transition.Fade;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +28,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         private TextView textView1;
         private TextView textView2;
         private TextView textView3;
+        private View view;
 
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
+            view = itemView.findViewById(R.id.view_background);
             imageView = itemView.findViewById(R.id.imageView);
             textView1 = itemView.findViewById(R.id.textView);
             textView2 = itemView.findViewById(R.id.textView2);
@@ -60,10 +63,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity,
+                        Pair.<View, String>create(holder.view, "viewTransition"),
                         Pair.<View, String>create(holder.imageView, "imageTransition"),
                         Pair.<View, String>create(holder.textView1, "textTransition1"),
                         Pair.<View, String>create(holder.textView2, "textTransition2"),
-                        Pair.<View, String>create(holder.textView3, "textTransition3"));
+                        Pair.<View, String>create(holder.textView3, "textTransition3")
+                );
                 context.startActivity(intent, options.toBundle());
             }
         });

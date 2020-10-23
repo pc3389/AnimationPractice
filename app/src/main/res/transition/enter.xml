@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:transitionOrdering="together"
+    android:interpolator="@android:interpolator/linear_out_slow_in"
+    android:duration="250">
+    <transitionSet>
+        <targets>
+            <target android:excludeId="@android:id/navigationBarBackground" />
+            <target android:excludeId="@android:id/statusBarBackground" />
+            <target android:excludeId="@id/action_bar_container" />
+
+        </targets>
+        <transition
+            class="android.transition.Slide"/>
+
+        <!-- We start fade in animation later to fake that views appear in middle of screen -->
+        <fade>
+            <targets>
+                <target android:excludeId="@android:id/statusBarBackground" />
+                <target android:excludeId="@android:id/navigationBarBackground" />
+                <target android:excludeId="@id/action_bar_container" />
+            </targets>
+        </fade>
+
+    </transitionSet>
+
+</transitionSet>
